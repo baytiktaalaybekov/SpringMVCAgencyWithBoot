@@ -10,11 +10,11 @@ import peaksoft.app.service.AgencySe;
 
 @Controller
 @RequestMapping("/agencies")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 //TODO
 public class AgencyApi {
 
-    private final AgencySe agencySe;
+    private  AgencySe agencySe;
 
     @GetMapping
     public String getAllAgency(Model model) {
