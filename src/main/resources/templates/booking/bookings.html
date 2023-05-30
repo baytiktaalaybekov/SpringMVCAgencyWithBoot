@@ -93,7 +93,7 @@
         <td th:text="${bookings.getHouses().getHouseType()}"></td>
         <td th:text="${bookings.getCustomers().getName() + ' ' + bookings.getCustomers().getSurname()}"></td>
         <td>
-            <form class="deleteButton" th:method="DELETE" th:action="@{/bookings/{id}/{bookingId}/delete(id=${id},bookingId=${bookings.getId()})}">
+            <form class="deleteButton" th:method="GET" th:action="@{/bookings/{id}/{bookingId}/delete(id=${id},bookingId=${bookings.getId()})}">
                 <input type="submit" class="btn btn-outline-primary"  th:value="  Delete  "/>
             </form>
         </td>

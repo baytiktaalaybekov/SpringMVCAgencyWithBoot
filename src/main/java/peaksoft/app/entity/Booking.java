@@ -23,11 +23,11 @@ public class Booking {
     @Transient
     private Long house_id;
 
-    @OneToOne(cascade = {PERSIST, DETACH, MERGE, REFRESH})
+    @OneToOne(cascade = {PERSIST, DETACH, MERGE, REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name = "houses_id")
     private House houses;
 
-    @ManyToOne(cascade = {PERSIST, DETACH, MERGE, REFRESH})
+    @ManyToOne(cascade = {PERSIST, DETACH, MERGE, REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name = "customers_id")
     private Customer customers;
 

@@ -2,11 +2,9 @@ package peaksoft.app.service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import peaksoft.app.entity.Agency;
 import peaksoft.app.entity.Booking;
 import peaksoft.app.entity.Customer;
 import peaksoft.app.entity.House;
-import peaksoft.app.repository.AgencyRe;
 import peaksoft.app.repository.BookingRe;
 import peaksoft.app.repository.CustomerRE;
 import peaksoft.app.repository.HouseRe;

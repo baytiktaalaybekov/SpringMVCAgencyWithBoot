@@ -50,9 +50,10 @@ public class BookingApi {
 
     }
 
-    @DeleteMapping("/{bookingId}/delete")
+    @GetMapping("/{bookingId}/delete")
     public String deleteBooking(@PathVariable Long bookingId,
                                 @PathVariable Long id) {
+        System.out.println("Baytik");
         bookingSe.deleteBookingById(bookingId);
         return "redirect:/bookings/" + id;
     }

@@ -1,7 +1,7 @@
 package peaksoft.app.api;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +10,12 @@ import peaksoft.app.service.AgencySe;
 
 @Controller
 @RequestMapping("/agencies")
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 //TODO
 public class AgencyApi {
 
-    private  AgencySe agencySe;
+    private final AgencySe agencySe;
+
 
     @GetMapping
     public String getAllAgency(Model model) {
