@@ -1,13 +1,14 @@
-package peaksoft.api;
+package peaksoft.app.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import peaksoft.entity.Booking;
-import peaksoft.service.BookingSe;
-import peaksoft.service.CustomerSe;
-import peaksoft.service.HouseSe;
+import peaksoft.app.entity.Booking;
+import peaksoft.app.service.BookingSe;
+import peaksoft.app.service.CustomerSe;
+import peaksoft.app.service.HouseSe;
+
 
 @Controller
 @RequestMapping("/bookings/{id}")
@@ -42,13 +43,6 @@ public class BookingApi {
 
     @PostMapping("/save")
     public String saveBooking(@PathVariable Long id,@ModelAttribute("newBooking") Booking booking, Model model) {
-//        try {
-//            bookingSe.saveBooking(booking);
-//            return "redirect:/bookings/{id}";
-//        } catch (RuntimeException e) {
-//            model.addAttribute("errorMessage", e.getMessage());
-//            return "booking/newBooking";
-//        }
         model.addAttribute("houses", houseSe.getAllHouse(id));
         model.addAttribute("customers", customerSe.getAllCustomers(id));
         bookingSe.saveBooking(id,booking);
@@ -59,8 +53,8 @@ public class BookingApi {
     @DeleteMapping("/{bookingId}/delete")
     public String deleteBooking(@PathVariable Long bookingId,
                                 @PathVariable Long id) {
-        bookingSe.deleteBookingById(id);
-        return "redirect:/bookings/"+id;
+        bookingSe.deleteBookingById(bookingId);
+        return "redirect:/bookings/" + id;
     }
 
     @GetMapping("/{bookingId}/edit")
@@ -69,12 +63,12 @@ public class BookingApi {
         Booking bookingById = bookingSe.getBookingById(bookingId);
         model.addAttribute("houses", houseSe.getAllHouse(id));
         model.addAttribute("customers", customerSe.getAllCustomers(id));
-        model.addAttribute("booking", bookingId);
+        model.addAttribute("booking", new Booking());
         model.addAttribute(id);
         return "booking/updateBooking";
     }
 
-    @PutMapping("/{bookingId}/update")
+    @PostMapping("/{bookingId}/update")
     public String update(@ModelAttribute("booking") Booking booking,
                          @PathVariable Long bookingId,
                          @PathVariable Long id) {

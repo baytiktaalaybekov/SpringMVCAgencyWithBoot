@@ -1,4 +1,4 @@
-package peaksoft.exception;
+package peaksoft.app.exception;
 
 public class MyException extends Exception{
     public MyException() {

@@ -1,21 +1,18 @@
-package peaksoft.repository;
+package peaksoft.app.repository;
 
-import peaksoft.entity.Agency;
-import peaksoft.entity.House;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import peaksoft.app.entity.House;
 
 import java.util.List;
 
-public interface HouseRe {
+@Repository
+public interface HouseRe extends JpaRepository<House,Long> {
 
-    void saveHouse (Long agencyId, House house);
-
-    List<House> getAllHouses();
-
+    @Query("from House h join Agency a where  h.agencies.id = :agencyId")
     List<House> getAllHouse(Long agencyId);
 
-    void deleteHouse(Long id);
 
-    void updateHouse(Long id, House house);
-
-    House getHouseById(Long id);
+    void deleteHouseById(Long id);
 }

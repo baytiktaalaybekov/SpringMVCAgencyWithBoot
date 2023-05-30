@@ -59,7 +59,7 @@
         <td th:text="${customers.getPhoneNumber()}"></td>
         <td th:text="${customers.getDate_of_birth()}"></td>
         <td>
-            <form class="deleteButton" th:method="DELETE" th:action="@{/customers/{agencyId}/delete/{customerId}(agencyId=${agencyId}, customerId=${customers.getId()})}">
+            <form class="deleteButton" th:method="POST" th:action="@{/customers/{agencyId}/delete/{customerId}(agencyId=${agencyId}, customerId=${customers.getId()})}">
                 <input type="submit" class="btn btn-outline-primary"  th:value="  Delete  "/>
             </form>
         </td>

@@ -49,7 +49,7 @@
         <br>
 
         <div class="home col-12">
-        <form class="deleteButton" th:method="DELETE" th:action="@{/agencies/{id}/delete (id=${agenciess.getId()})}">
+        <form class="deleteButton" th:method="POST" th:action="@{/agencies/{id}/delete (id=${agenciess.getId()})}">
             <input type="submit" th:value="Delete">
         </form>
     </div>

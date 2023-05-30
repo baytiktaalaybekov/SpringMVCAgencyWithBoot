@@ -1,10 +1,10 @@
-package peaksoft.entity;
+package peaksoft.app.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import peaksoft.enums.Gender;
+import peaksoft.app.enums.Gender;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,6 +19,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Customer_SEQ")
     @SequenceGenerator(name = "Customer_SEQ",sequenceName = "Customer_id_gen",allocationSize = 1)
+    //TODO ALLOCATION SIZE
     private Long id;
 
     private String name;
@@ -29,6 +30,7 @@ public class Customer {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    //TODO ENUM TYPE
 
     @Column(name = "phone_number")
     private String phoneNumber;

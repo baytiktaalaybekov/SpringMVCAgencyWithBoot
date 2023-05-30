@@ -36,7 +36,7 @@
 </head>
 <body>
 <div style="margin-top: 100px"  class="d-flex justify-content-center">
-    <form class="p-5 bg-light" th:action="@{/bookings/{id}/{bookingId}/update(id=${id}, bookingId=${bookingId})}" th:object="${booking}" th:method="PUT">
+    <form class="p-5 bg-light" th:action="@{/bookings/{id}/{bookingId}/update (id=${id},bookingId=${bookingId})}" th:object="${booking}" th:method="POST">
         <div class="form-group">
             <select style="text-align:center;" th:field="*{house_id}" class="date-input">-->
                 <option value="">--Select a house--</option>

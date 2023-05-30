@@ -1,21 +1,23 @@
-package peaksoft.api;
+package peaksoft.app.api;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import peaksoft.entity.Agency;
-import peaksoft.service.AgencySe;
+import peaksoft.app.entity.Agency;
+import peaksoft.app.service.AgencySe;
 
 @Controller
 @RequestMapping("/agencies")
 @RequiredArgsConstructor
+//TODO
 public class AgencyApi {
 
     private final AgencySe agencySe;
 
     @GetMapping
-    public String getAllAgency(Model model,@RequestParam(value = "word",required = false)String word) {
+    public String getAllAgency(Model model) {
         model.addAttribute("agencies", agencySe.getAllAgency());
         return "agency/agenciess";
     }
@@ -32,8 +34,9 @@ public class AgencyApi {
         return "redirect:/agencies";
     }
 
-    @DeleteMapping("{id}/delete")
+    @PostMapping("{id}/delete")
     public String deleteAgency(@PathVariable Long id) {
+        //TODO REQUEST PARAM
         agencySe.deleteAgencyById(id);
         return "redirect:/agencies";
     }
@@ -50,24 +53,26 @@ public class AgencyApi {
 
     }
 
-    @PutMapping("/{id}/update")
+    @PostMapping("/{id}/update")
     public String updateAgency(@ModelAttribute("updateAgency") Agency agency,
                                @PathVariable("id") Long id) {
-        agencySe.updateAgency(id, agency);
+        agencySe.update(id, agency);
         return "redirect:/agencies";
-    }
 
-    @GetMapping("/search")
-    public String search(@RequestParam("search") String search,Model model){
-        model.addAttribute("searching",agencySe.search(search));
-        return "agency/searchPage";
+        //TODO PUT VS PATCH MAPPING
     }
-
-    @GetMapping("/getAgency/{agencyId}")
-    public String resultSearching(@PathVariable Long agencyId,Model model){
-        model.addAttribute("houseList",agencySe.getAllHouseToAgency(agencyId));
-        return "agency/newPageforSearch";
-
-    }
+//
+//    @GetMapping("/search")
+//    public String search(@RequestParam("search") String search,Model model){
+//        model.addAttribute("searching",agencySe.search(search));
+//        return "agency/searchPage";
+//    }
+//
+//    @GetMapping("/getAgency/{agencyId}")
+//    public String resultSearching(@PathVariable Long agencyId,Model model){
+//        model.addAttribute("houseList",agencySe.getAllHouseToAgency(agencyId));
+//        return "agency/newPageforSearch";
+//
+//    }
 
 }

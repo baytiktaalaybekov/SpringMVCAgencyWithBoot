@@ -1,14 +1,13 @@
-package peaksoft.entity;
+package peaksoft.app.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import java.util.List;
 
-import static jakarta.persistence.CascadeType.*;
+import static jakarta.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "agency")

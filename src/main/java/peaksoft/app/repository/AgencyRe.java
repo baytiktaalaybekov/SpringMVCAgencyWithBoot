@@ -1,18 +1,16 @@
-package peaksoft.repository;
+package peaksoft.app.repository;
 
-import peaksoft.entity.Agency;
-import peaksoft.entity.House;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import peaksoft.app.entity.Agency;
 
 import java.util.List;
+@Repository
+public interface AgencyRe extends JpaRepository<Agency,Long> {
 
-public interface AgencyRe {
-    void saveAgency(Agency agency);
-    List<Agency> getAllAgency();
-    Agency getAgencyById(Long id);
-    void updateAgency(Long id, Agency agency);
-    void deleteAgencyById(Long id);
-    List<Agency> search (String word);
+    @Query("delete from Agency where id=:id")
+    String deleteByAgencyId(Long id);
 
-
-    List<House> getAllHouseToAgency(Long agencyId);
 }

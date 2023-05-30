@@ -1,16 +1,17 @@
-package peaksoft.repository;
+package peaksoft.app.repository;
 
-import peaksoft.entity.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import peaksoft.app.entity.Customer;
 
 import java.util.List;
 
-public interface CustomerRE {
-    void saveCustomer(Customer customer, Long agencyId);
-    List<Customer> getAllCustomer();
+@Repository
+public interface CustomerRE extends JpaRepository<Customer,Long> {
+
+    @Query("from Customer c join c.agencies a where a.id= :id")
     List<Customer> getAllCustomers(Long id);
 
-    Customer getCustomerById(Long id);
-    void updateCustomer(Long id, Customer customer);
-    void deleteCustomerById(Long id);
-    void assignCustomerToAgency(Long customerId,List<Long> agencyId);
+
 }

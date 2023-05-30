@@ -1,10 +1,11 @@
-package peaksoft.entity;
+package peaksoft.app.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import peaksoft.enums.HouseType;
+import peaksoft.app.enums.HouseType;
+
 
 import static jakarta.persistence.CascadeType.*;
 
@@ -25,7 +26,7 @@ public class House {
     private String room;
     private String country;
     private String description;
-    private Boolean is_Booked = false;
+    private Boolean is_Booked;
     @Column(length = 100000000)
     private String image_Link;
 

@@ -1,6 +1,7 @@
-package peaksoft.service;
+package peaksoft.app.service;
 
-import peaksoft.entity.Booking;
+
+import peaksoft.app.entity.Booking;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface BookingSe {
 
     void updateBooking(Long id, Booking booking);
 
-    void deleteBookingById(Long id);
+    String deleteBookingById(Long id);
 }

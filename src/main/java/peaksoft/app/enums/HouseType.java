@@ -1,4 +1,4 @@
-package peaksoft.enums;
+package peaksoft.app.enums;
 
 public enum HouseType {
     APARTMENT,

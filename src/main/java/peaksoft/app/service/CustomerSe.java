@@ -1,6 +1,8 @@
-package peaksoft.service;
+package peaksoft.app.service;
 
-import peaksoft.entity.Customer;
+
+
+import peaksoft.app.entity.Customer;
 
 import java.util.List;
 
@@ -10,6 +12,6 @@ public interface CustomerSe {
     List<Customer> getAllCustomers(Long id);
     Customer getCustomerById(Long id);
     void updateCustomer(Long id, Customer customer);
-    void deleteCustomerById(Long id);
-    void assignCustomerToAgency(Long customerId,List<Long> agencyId);
+    String deleteCustomerById(Long id);
+//    void assignCustomerToAgency(Long customerId,List<Long> agencyId);
 }

@@ -1,6 +1,7 @@
-package peaksoft.service;
+package peaksoft.app.service;
 
-import peaksoft.entity.House;
+
+import peaksoft.app.entity.House;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface HouseSe {
 
     List<House> getAllHouses();
 
-    void deleteHouse(Long id);
+    String deleteHouseById(Long id);
 
     void updateHouse(Long id, House house);
 

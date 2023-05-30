@@ -3,25 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Book</title>
-<!--    <style>-->
-<!--        .container{-->
-<!--            display: flex;-->
-<!--            flex-wrap: wrap;-->
-<!--        }-->
-<!--        .deleteButton{-->
-<!--            display: flex;-->
-<!--            position: absolute;-->
-<!--        }-->
-<!--        .updateButton{-->
-<!--            display: flex;-->
-<!--            float: right;-->
-<!--        }-->
-<!--        .buttons{-->
-<!--            display: flex;-->
-<!--            flex-wrap: wrap;-->
-<!--            justify-content: center;-->
-<!--        }-->
-<!--    </style>-->
+
     <style>
         * {box-sizing: border-box;}
 
@@ -91,7 +73,6 @@
     </div>
     </a>
     <p style="text-align:center; margin-left: 550px">
-
         <a class="btn btn-outline-primary" role="button" th:href="@{/bookings/{id}/new (id=${id})}" ><button type="submit"> Add booking</button></a>
     </p>
 </nav>
@@ -107,17 +88,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="booking:${bookings}">
-        <th th:text="${booking.getId()}"></th>
-        <td th:text="${booking.getHouses().getHouseType()}"></td>
-        <td th:text="${booking.getCustomers().getName() + ' ' + booking.getCustomers().getSurname()}"></td>
+    <tr th:each="bookings:${booking}">
+        <th th:text="${bookings.getId()}"></th>
+        <td th:text="${bookings.getHouses().getHouseType()}"></td>
+        <td th:text="${bookings.getCustomers().getName() + ' ' + bookings.getCustomers().getSurname()}"></td>
         <td>
-            <form class="deleteButton" th:method="DELETE" th:action="@{/bookings/{id}/{bookingId}/delete (id=${id},bookingId=${booking.getId()})}">
+            <form class="deleteButton" th:method="DELETE" th:action="@{/bookings/{id}/{bookingId}/delete(id=${id},bookingId=${bookings.getId()})}">
                 <input type="submit" class="btn btn-outline-primary"  th:value="  Delete  "/>
             </form>
         </td>
         <td>
-            <form class="updateButton" th:method="GET" th:action="@{/bookings/{id}/{bookingId}/edit(id=${id},bookingId=${booking.getId()})}">
+            <form class="updateButton" th:method="GET" th:action="@{/bookings/{id}/{bookingId}/edit(id=${id},bookingId=${bookings.getId()})}">
                 <input type="submit" class="btn btn-outline-primary"  th:value="  Update  "/>
             </form>
         </td>

@@ -1,4 +1,4 @@
-package peaksoft.entity;
+package peaksoft.app.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

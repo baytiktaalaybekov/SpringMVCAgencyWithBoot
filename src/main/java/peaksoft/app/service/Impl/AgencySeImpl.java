@@ -1,13 +1,15 @@
-package peaksoft.service.Impl;
+package peaksoft.app.service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import peaksoft.entity.Agency;
-import peaksoft.entity.House;
-import peaksoft.repository.AgencyRe;
-import peaksoft.service.AgencySe;
+import peaksoft.app.entity.Agency;
+import peaksoft.app.entity.House;
+import peaksoft.app.repository.AgencyRe;
+import peaksoft.app.service.AgencySe;
+
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -15,40 +17,47 @@ public class AgencySeImpl implements AgencySe {
 
     private final AgencyRe agencyRe;
 
+
     @Override
     public void saveAgency(Agency agency) {
-        agencyRe.saveAgency(agency);
+        agencyRe.save(agency);
     }
 
     @Override
     public List<Agency> getAllAgency() {
-        return agencyRe.getAllAgency();
+        return agencyRe.findAll();
     }
 
     @Override
     public Agency getAgencyById(Long id) {
-        return agencyRe.getAgencyById(id);
+        Agency agency = agencyRe.findById(id).get();
+        //ADD NOT FOUND
+        return agency;
     }
 
     @Override
-    public void updateAgency(Long id, Agency agency) {
-        agencyRe.updateAgency(id,agency);
-
+    public void update(Long id, Agency agency) {
+        Agency agency1 = agencyRe.findById(id).
+                orElseThrow(()-> new RuntimeException("Agency with id: " +id+ "not found"));
+        agency1.setName(agency.getName());
+        //TODO UPDATE NOT SAME VALUES
+        agency1.setCountry(agency.getCountry());
+        agency1.setPhoneNumber(agency.getPhoneNumber());
+        agency1.setEmail(agency.getEmail());
+        agency1.setImage_Link(agency.getImage_Link());
+        agencyRe.save(agency1);
     }
 
     @Override
-    public void deleteAgencyById(Long id) {
-        agencyRe.deleteAgencyById(id);
+    public String deleteAgencyById(Long id) {
+        boolean b = agencyRe.existsById(id);
+        if (!b) {
+            throw new NoSuchElementException("Agency with id: " +id+ "not found");
+        }
+        agencyRe.deleteById(id);
+        return "Agency with id: " + id+ "is deleted";
 
     }
 
-    @Override
-    public List<Agency> search(String word) {
-        return agencyRe.search(word);
-    }
 
-    @Override
-    public List<House> getAllHouseToAgency(Long agencyId) {
-        return agencyRe.getAllHouseToAgency(agencyId);
-    }
 }
